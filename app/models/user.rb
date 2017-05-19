@@ -4,7 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,:confirmable
 
-
+  def login=(login)
+    @login = login
+  end
  
   def login
     @login || self.username || self.email

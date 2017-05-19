@@ -5,7 +5,14 @@ class User::SessionsController < Devise::SessionsController
   # def new
   #   super
   # end
-
+  def update
+    debugger
+    @user.attributes = params[:user]  
+    # required for settings form to submit when password is left blank
+    if params[:user][:password].blank? && params[:user][:password_confirmation].blank?
+        params[:user].delete(:password)
+        params[:user].delete(:password_confirmation)
+    end
   # POST /resource/sign_in
   # def create
   #   super
